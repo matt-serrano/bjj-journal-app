@@ -1,0 +1,13 @@
+   ▲ Next.js 15.2.4
+   - Local:        http://127.0.0.1:3000
+   - Network:      http://127.0.0.1:3000
+   - Experiments (use with caution):
+     ⨯ esmExternals
+
+ ✓ Starting...
+ ✓ Ready in 1514ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.6s (833 modules)
+ GET / 200 in 3770ms
+ GET / 200 in 3919ms
+ GET / 200 in 70ms
