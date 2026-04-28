@@ -18,3 +18,18 @@
  GET / 200 in 1377ms
  GET /_next/static/webpack/84f335aa1cad77ab.webpack.hot-update.json 404 in 87ms
  GET / 200 in 96ms
+ GET / 200 in 62ms
+ ✓ Compiled in 146ms (404 modules)
+ GET / 200 in 59ms
+ ✓ Compiled in 193ms (404 modules)
+ GET / 200 in 13ms
+ GET / 200 in 12ms
+ GET / 200 in 11ms
+ GET / 200 in 55ms
+ ✓ Compiled in 122ms (404 modules)
+ GET / 200 in 16ms
+ ✓ Compiled in 676ms (842 modules)
+ GET / 200 in 89ms
+ GET / 200 in 147ms
+ ✓ Compiled in 124ms (405 modules)
+ GET / 200 in 17ms

@@ -1,4 +1,4 @@
-import { Activity, BookOpen, Scale } from "lucide-react"
+import { Activity, BookOpen, Scale, UserRound } from "lucide-react"
 
 const navItems = [
   { icon: Activity, label: "Analysis", isActive: true },
@@ -29,15 +29,8 @@ export function Sidebar() {
         </div>
       </div>
 
-      <div className="relative w-16 h-16 rounded-full border-2 border-red-500 flex-shrink-0 overflow-hidden">
-        <img
-          src="/images/logo.png"
-          alt="BJJ Journal"
-          className="w-full h-full object-contain rounded-full"
-          onError={(e) => {
-            e.currentTarget.style.display = "none"
-          }}
-        />
+      <div className="relative w-9 h-9 rounded-full bg-gray-800 text-gray-400 flex-shrink-0 flex items-center justify-center">
+        <UserRound size={18} strokeWidth={1.6} aria-label="User profile" />
       </div>
     </nav>
   )

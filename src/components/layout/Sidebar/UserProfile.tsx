@@ -1,14 +1,9 @@
+import { UserRound } from "lucide-react"
+
 export function UserProfile() {
   return (
-    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-red-500">
-      <img
-        src="/images/logo.png"
-        alt="BJJ Journal"
-        className="w-full h-full object-contain"
-        onError={(event) => {
-          event.currentTarget.style.display = "none"
-        }}
-      />
+    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-800 text-gray-400 flex items-center justify-center">
+      <UserRound size={18} strokeWidth={1.6} aria-label="User profile" />
     </div>
   )
 }
