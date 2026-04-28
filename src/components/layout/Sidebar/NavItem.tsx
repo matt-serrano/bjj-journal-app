@@ -11,6 +11,7 @@ interface NavItemProps {
 export function NavItem({ icon: Icon, label, isActive, isCollapsed, className = "" }: NavItemProps) {
   return (
     <button
+      aria-label={label}
       className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl transition-colors relative group ${
         isActive ? className || "text-gray-900 bg-pink-300" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
       }`}

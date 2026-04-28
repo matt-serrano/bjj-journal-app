@@ -1,16 +1,6 @@
-"use client"
-
-import { useState } from "react"
 import { Sidebar } from "@/src/components/layout/Sidebar"
 import { WeatherWidget } from "@/src/components/weather/WeatherWidget"
 import { EnergyPanel } from "@/src/components/energy/EnergyPanel"
-import { RoomSelector, type Room } from "@/src/components/header/RoomSelector"
-import { LivingRoom } from "@/src/components/rooms/LivingRoom"
-import { Kitchen } from "@/src/components/rooms/Kitchen"
-import { Bathroom } from "@/src/components/rooms/Bathroom"
-import { Bedroom } from "@/src/components/rooms/Bedroom"
-import { Backyard } from "@/src/components/rooms/Backyard"
-import { Terrace } from "@/src/components/rooms/Terrace"
 
 const weatherData = {
   temperature: 16,
@@ -22,27 +12,6 @@ const weatherData = {
 }
 
 export default function Page() {
-  const [selectedRoom, setSelectedRoom] = useState<Room>("Living Room")
-
-  const renderRoom = () => {
-    switch (selectedRoom) {
-      case "Living Room":
-        return <LivingRoom />
-      case "Kitchen":
-        return <Kitchen />
-      case "Bathroom":
-        return <Bathroom />
-      case "Bedroom":
-        return <Bedroom />
-      case "Backyard":
-        return <Backyard />
-      case "Terrace":
-        return <Terrace />
-      default:
-        return <LivingRoom />
-    }
-  }
-
   return (
     <div className="h-screen bg-gray-950 text-white flex overflow-hidden">
       <div className="hidden lg:block">
@@ -62,14 +31,18 @@ export default function Page() {
 
             {/* Main Content */}
             <div className="xl:col-span-9 space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-6 xl:mt-0">
+              <div className="flex items-center justify-between gap-4 mt-6 xl:mt-0">
                 <h1 className="text-2xl sm:text-3xl font-bold lg:flex-shrink-0">Hi Ann!</h1>
-                <div className="lg:flex-1 lg:max-w-2xl">
-                  <RoomSelector selectedRoom={selectedRoom} onRoomChange={setSelectedRoom} />
-                </div>
               </div>
 
-              {renderRoom()}
+              <section className="space-y-4 sm:space-y-6 md:space-y-8" aria-label="Blank dashboard content">
+                <div className="h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 rounded-2xl sm:rounded-3xl bg-gray-900" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                  <div className="aspect-square rounded-2xl bg-gray-900" />
+                  <div className="aspect-square rounded-2xl bg-gray-900" />
+                  <div className="aspect-square rounded-2xl bg-gray-900" />
+                </div>
+              </section>
             </div>
           </div>
         </div>

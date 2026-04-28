@@ -18,6 +18,7 @@ export function Sidebar() {
           {navItems.map(({ icon: Icon, label, isActive }) => (
             <button
               key={label}
+              aria-label={label}
               className={`w-12 h-12 flex items-center justify-center rounded-xl transition-colors flex-shrink-0 ${
                 isActive ? "bg-pink-300 text-gray-900" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
               }`}
