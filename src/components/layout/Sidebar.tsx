@@ -1,18 +1,9 @@
-import { Grid3X3, Lightbulb, Music2, Coffee, Sun, Thermometer, Shield, Bell, Settings } from "lucide-react"
+import { Activity, BookOpen, Scale } from "lucide-react"
 
 const navItems = [
-  { icon: Grid3X3, label: "Dashboard", isActive: true },
-  { icon: Lightbulb, label: "Lighting" },
-  { icon: Music2, label: "Media" },
-  { icon: Coffee, label: "Kitchen" },
-  { icon: Sun, label: "Environment" },
-  { icon: Thermometer, label: "Temperature" },
-  { icon: Shield, label: "Security" },
-]
-
-const bottomItems = [
-  { icon: Bell, label: "Notifications" },
-  { icon: Settings, label: "Settings" },
+  { icon: Activity, label: "Analysis", isActive: true },
+  { icon: BookOpen, label: "Journal" },
+  { icon: Scale, label: "Weight Loss" },
 ]
 
 export function Sidebar() {
@@ -20,7 +11,7 @@ export function Sidebar() {
     <nav className="fixed left-0 top-0 h-screen w-20 bg-gray-900 flex flex-col items-center py-8 overflow-y-auto scrollbar-hide">
       <div className="text-xl font-light text-white tracking-tight mb-4 flex-shrink-0">sync</div>
 
-      <div className="flex flex-col items-center space-y-6 flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+      <div className="flex flex-col items-center space-y-6 flex-1 min-h-0">
         <div className="flex flex-col items-center space-y-6">
           {navItems.map(({ icon: Icon, label, isActive }) => (
             <button
@@ -34,18 +25,6 @@ export function Sidebar() {
             </button>
           ))}
         </div>
-      </div>
-
-      <div className="flex flex-col items-center space-y-6 mb-4 flex-shrink-0">
-        {bottomItems.map(({ icon: Icon, label }) => (
-          <button
-            key={label}
-            className="w-12 h-12 flex items-center justify-center rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors"
-            title={label}
-          >
-            <Icon size={20} strokeWidth={1.5} />
-          </button>
-        ))}
       </div>
 
       <div className="relative w-16 h-16 rounded-full border-2 border-red-500 flex-shrink-0 overflow-hidden bg-gray-800">
