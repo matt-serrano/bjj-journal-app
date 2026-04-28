@@ -20,12 +20,23 @@ interface BlankDashboardPageProps {
 
 function BlankContent({ title }: { title: string }) {
   return (
-    <section className="space-y-4 sm:space-y-6 md:space-y-8" aria-label={`${title} blank content`}>
-      <div className="h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 rounded-2xl sm:rounded-3xl bg-gray-900" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-        <div className="aspect-square rounded-2xl bg-gray-900" />
-        <div className="aspect-square rounded-2xl bg-gray-900" />
-        <div className="aspect-square rounded-2xl bg-gray-900" />
+    <section className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12" aria-label={`${title} blank content`}>
+      <div className="min-h-64 rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-7">
+        <div className="h-full min-h-44 rounded-xl bg-gray-950/60" />
+      </div>
+      <div className="min-h-64 rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-5">
+        <div className="h-full min-h-44 rounded-xl bg-gray-950/60" />
+      </div>
+      <div className="rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-12">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,500px)_1fr]">
+          <div className="h-80 rounded-xl bg-gray-950/60" />
+          <div className="space-y-3">
+            <div className="h-20 rounded-xl bg-gray-950/60" />
+            <div className="h-20 rounded-xl bg-gray-950/60" />
+            <div className="h-20 rounded-xl bg-gray-950/60" />
+            <div className="h-16 rounded-xl border border-dashed border-gray-700" />
+          </div>
+        </div>
       </div>
     </section>
   )

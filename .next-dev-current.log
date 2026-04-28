@@ -14,3 +14,49 @@
  ✓ Compiled / in 3.9s (790 modules)
  GET / 200 in 4465ms
  GET /?name=Ann 200 in 4495ms
+ ✓ Compiled in 236ms (340 modules)
+ ✓ Compiled in 116ms (340 modules)
+ ✓ Compiled in 122ms (340 modules)
+ ✓ Compiled /journal in 421ms (773 modules)
+ GET /journal 200 in 551ms
+ GET /weight-loss 200 in 596ms
+ GET / 200 in 628ms
+ ✓ Compiled in 133ms (349 modules)
+ GET / 200 in 33ms
+ GET / 200 in 46ms
+ ✓ Compiled in 334ms (781 modules)
+ GET / 200 in 82ms
+ ✓ Compiled in 214ms (781 modules)
+ GET / 200 in 80ms
+ ✓ Compiled in 438ms (781 modules)
+ GET / 200 in 44ms
+ GET / 200 in 137ms
+ GET / 200 in 48ms
+ ✓ Compiled in 119ms (349 modules)
+ GET / 200 in 22ms
+ ✓ Compiled /journal in 76ms (436 modules)
+ GET /journal 200 in 203ms
+ ✓ Compiled /weight-loss in 346ms (438 modules)
+ GET /weight-loss 200 in 445ms
+ GET / 200 in 104ms
+ GET / 200 in 14ms
+ ✓ Compiled in 283ms (787 modules)
+ GET / 200 in 53ms
+ GET / 200 in 107ms
+ GET /journal 200 in 48ms
+ ✓ Compiled in 142ms (349 modules)
+ GET / 200 in 19ms
+ ✓ Compiled in 303ms (781 modules)
+ GET / 200 in 51ms
+ ✓ Compiled /journal in 83ms (436 modules)
+ GET /journal 200 in 139ms
+ GET /journal 200 in 15ms
+ GET / 200 in 21ms
+ ✓ Compiled in 461ms (785 modules)
+ GET / 200 in 55ms
+ GET /journal 200 in 16ms
+ GET / 200 in 14ms
+ GET / 200 in 145ms
+ GET / 200 in 61ms
+ ✓ Compiled in 119ms (349 modules)
+ GET / 200 in 18ms
