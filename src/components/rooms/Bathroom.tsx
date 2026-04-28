@@ -1,6 +1,7 @@
 import { RoomStats } from '../status/RoomStats';
 import { DeviceCard } from '../devices/DeviceCard';
 import { LiveIndicator } from '../status/LiveIndicator';
+import { SafeImage } from '../common/SafeImage';
 
 const devices = [
   {
@@ -40,21 +41,14 @@ export function Bathroom() {
   return (
     <div className="space-y-8">
       <div className="aspect-video rounded-3xl overflow-hidden relative bg-gray-900">
-        <picture>
-          <source
-            media="(min-width: 1024px)"
-            srcSet="/images/rooms/bathroom.jpg"
-          />
-          <source
-            media="(min-width: 768px)"
-            srcSet="/images/rooms/bathroom.jpg"
-          />
-          <img
-            src="/images/rooms/bathroom.jpg"
-            alt="Bathroom"
-            className="w-full h-full object-cover opacity-90"
-          />
-        </picture>
+        <SafeImage
+          src="/images/rooms/bathroom.jpg"
+          alt="Bathroom"
+          fill
+          fallbackSrc="/images/logo.png"
+          className="object-cover opacity-90"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 900px"
+        />
         
         <LiveIndicator />
         

@@ -6,7 +6,7 @@ import { DeviceCard } from "../devices/DeviceCard"
 import { MusicPlayer } from "../music/MusicPlayer"
 import { LiveIndicator } from "../status/LiveIndicator"
 import type { Device } from "@/types"
-import Image from "next/image"
+import { SafeImage } from "../common/SafeImage"
 
 const initialDevices: Device[] = [
   {
@@ -53,11 +53,12 @@ export function LivingRoom() {
         className="rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-900 w-full h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96"
         style={{ position: 'relative' }}
       >
-        <Image
+        <SafeImage
           src="/images/rooms/living-room.jpg"
           alt="Living Room"
           fill
           priority
+          fallbackSrc="/images/logo.png"
           className="object-cover opacity-90"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 900px"
           style={{ objectFit: 'cover' }}

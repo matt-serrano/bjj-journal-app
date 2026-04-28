@@ -9,7 +9,9 @@ const navItems = [
 export function Sidebar() {
   return (
     <nav className="fixed left-0 top-0 h-screen w-20 bg-gray-900 flex flex-col items-center py-8 overflow-y-auto scrollbar-hide">
-      <div className="text-xl font-light text-white tracking-tight mb-4 flex-shrink-0">sync</div>
+      <div className="mb-4 h-12 w-12 flex-shrink-0 overflow-hidden">
+        <img src="/images/logo.png" alt="BJJ Journal" className="h-full w-full object-contain" />
+      </div>
 
       <div className="flex flex-col items-center space-y-6 flex-1 min-h-0">
         <div className="flex flex-col items-center space-y-6">
@@ -27,16 +29,13 @@ export function Sidebar() {
         </div>
       </div>
 
-      <div className="relative w-16 h-16 rounded-full border-2 border-red-500 flex-shrink-0 overflow-hidden bg-gray-800">
+      <div className="relative w-16 h-16 rounded-full border-2 border-red-500 flex-shrink-0 overflow-hidden">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1494790108377-be9c29b29330-0ITDG9UYNBJygMOGBGIv4aR4Qj9VKY.jpeg"
-          alt="User Profile"
-          className="w-full h-full object-cover rounded-full"
+          src="/images/logo.png"
+          alt="BJJ Journal"
+          className="w-full h-full object-contain rounded-full"
           onError={(e) => {
-            // Fallback if image fails to load
             e.currentTarget.style.display = "none"
-            e.currentTarget.parentElement!.innerHTML =
-              '<div class="w-full h-full bg-gray-700 rounded-full flex items-center justify-center text-white text-sm font-medium">A</div>'
           }}
         />
       </div>

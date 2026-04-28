@@ -38,6 +38,8 @@ export default function Page() {
         return <Backyard />
       case "Terrace":
         return <Terrace />
+      default:
+        return <LivingRoom />
     }
   }
 

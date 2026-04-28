@@ -20,7 +20,7 @@ interface RoomHeaderProps {
 }
 
 export function RoomHeader({ room, temperature, humidity, power, efficiency }: RoomHeaderProps) {
-  const Icon = roomIcons[room];
+  const Icon = roomIcons[room] || HomeIcon;
   
   return (
     <div className="absolute left-4 bottom-4 flex items-center gap-3">

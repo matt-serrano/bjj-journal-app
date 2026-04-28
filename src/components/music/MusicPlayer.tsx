@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Music2 } from "lucide-react"
 import { PlayButton } from "./PlayButton"
 import { ProgressBar } from "./ProgressBar"
-import Image from "next/image"
+import { SafeImage } from "../common/SafeImage"
 
 interface MusicPlayerProps {
   songTitle: string
@@ -41,11 +41,12 @@ export function MusicPlayer({ songTitle, artist, albumArt, currentTime, duration
   return (
     <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 right-3 sm:right-4 md:right-6 bg-black/80 backdrop-blur-md rounded-lg sm:rounded-xl p-2 sm:p-3 flex items-center gap-2 sm:gap-3">
       <div className="flex-shrink-0">
-        <Image
-          src={albumArt || "/placeholder.svg"}
-          alt={`${songTitle} by ${artist}`}
+        <SafeImage
+          src={albumArt || "/images/logo.png"}
+          alt={`${songTitle || "Track"} by ${artist || "Unknown artist"}`}
           width={32}
           height={32}
+          fallbackSrc="/images/logo.png"
           priority
           className="rounded-md sm:rounded-lg object-cover sm:w-10 sm:h-10"
         />
@@ -54,10 +55,10 @@ export function MusicPlayer({ songTitle, artist, albumArt, currentTime, duration
       <div className="flex-grow min-w-0">
         <div className="flex items-center gap-1 sm:gap-2">
           <Music2 className="text-green-500" size={14} />
-          <div className="text-xs sm:text-sm font-medium truncate">{songTitle}</div>
+          <div className="text-xs sm:text-sm font-medium truncate">{songTitle || "Untitled track"}</div>
         </div>
-        <div className="text-xs text-gray-400 truncate">{artist}</div>
-        <ProgressBar currentTime={currentTime} duration={duration} progress={progress} />
+        <div className="text-xs text-gray-400 truncate">{artist || "Unknown artist"}</div>
+        <ProgressBar currentTime={currentTime || "0:00"} duration={duration || "0:00"} progress={progress} />
       </div>
     </div>
   )

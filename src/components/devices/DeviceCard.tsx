@@ -1,6 +1,6 @@
 import { PowerButton } from './PowerButton';
 import type { Device } from '@/types';
-import Image from 'next/image';
+import { SafeImage } from '../common/SafeImage';
 
 interface DeviceCardProps {
   device: Device;
@@ -9,22 +9,29 @@ interface DeviceCardProps {
 
 export function DeviceCard({ device, onStatusChange }: DeviceCardProps) {
   const handleStatusChange = (status: 'on' | 'off') => {
-    onStatusChange?.(device.id, status);
+    if (device?.id) {
+      onStatusChange?.(device.id, status);
+    }
   };
+
+  if (!device) {
+    return null;
+  }
 
   return (
     <div className="relative rounded-2xl overflow-hidden group" style={{ position: 'relative', aspectRatio: '1 / 1' }}>
-      <Image
-        src={device.image}
-        alt={device.name}
+      <SafeImage
+        src={device.image || "/images/logo.png"}
+        alt={device.name || "Device"}
         fill
+        fallbackSrc="/images/logo.png"
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
       
       <div className="absolute inset-x-0 bottom-0 p-4">
         <div className="flex items-center justify-between mb-2">
-          <div className="text-lg font-medium">{device.name}</div>
+          <div className="text-lg font-medium">{device.name || "Device"}</div>
           <PowerButton 
             initialStatus={device.status}
             onChange={handleStatusChange}
