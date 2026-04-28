@@ -44,7 +44,7 @@ function BlankContent({ title }: { title: string }) {
 
 export function BlankDashboardPage({ title, children, showSidePanels = true }: BlankDashboardPageProps) {
   return (
-    <div className="h-screen bg-gray-950 text-white flex overflow-hidden">
+    <div className="relative z-10 h-screen bg-transparent text-white flex overflow-hidden">
       <div className="hidden lg:block">
         <Sidebar />
       </div>

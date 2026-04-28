@@ -60,3 +60,26 @@
  GET / 200 in 61ms
  ✓ Compiled in 119ms (349 modules)
  GET / 200 in 18ms
+ GET /journal 200 in 16ms
+ GET / 200 in 18ms
+ ✓ Compiled /weight-loss in 157ms (438 modules)
+ GET /weight-loss 200 in 244ms
+ GET /weight-loss 200 in 19ms
+ GET /journal 200 in 15ms
+ GET /weight-loss 200 in 17ms
+ GET /journal 200 in 16ms
+ GET /weight-loss 200 in 13ms
+ GET / 200 in 15ms
+ ✓ Compiled in 553ms (787 modules)
+ GET / 200 in 79ms
+ GET / 200 in 125ms
+ GET /journal 200 in 69ms
+ GET /weight-loss 200 in 44ms
+ ✓ Compiled in 188ms (349 modules)
+ GET / 200 in 27ms
+ GET /journal 200 in 19ms
+ GET /weight-loss 200 in 14ms
+ GET / 200 in 16ms
+ GET /journal 200 in 17ms
+ GET /weight-loss 200 in 15ms
+ GET / 200 in 12ms

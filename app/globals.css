@@ -18,3 +18,9 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
+
+#particles-js canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
