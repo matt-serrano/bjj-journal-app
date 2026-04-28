@@ -9,7 +9,7 @@ export function CollapseButton({ isCollapsed, onClick }: CollapseButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="mt-auto p-2 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors"
+      className="mt-auto p-2 rounded-xl text-neutral-400 hover:text-white hover:bg-[var(--app-control-hover)] transition-colors"
     >
       {isCollapsed ? (
         <ChevronRight size={20} />

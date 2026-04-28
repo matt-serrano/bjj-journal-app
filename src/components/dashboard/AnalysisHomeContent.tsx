@@ -67,15 +67,15 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
   return (
     <section className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12" aria-label="Analysis dashboard content">
-      <div className="rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-7">
+      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-pink-300">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
               <Bot size={18} strokeWidth={1.6} />
             </div>
             <div>
               <h2 className="font-[var(--font-bebas)] text-2xl font-normal">AI And Data Analysis</h2>
-              <p className="text-sm text-gray-400">Slide {activeSlide + 1} of {analysisSlides.length}</p>
+              <p className="text-sm text-neutral-400">Slide {activeSlide + 1} of {analysisSlides.length}</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               type="button"
               onClick={goToPreviousSlide}
               aria-label="Previous analysis slide"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-gray-300 transition-colors hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
             >
               <ChevronLeft size={18} />
             </button>
@@ -92,67 +92,67 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               type="button"
               onClick={goToNextSlide}
               aria-label="Next analysis slide"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-gray-300 transition-colors hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
             >
               <ChevronRight size={18} />
             </button>
           </div>
         </div>
 
-        <div className="min-h-44 rounded-xl bg-gray-950/60 p-4 sm:p-5">
-          <div className="mb-3 flex items-center gap-3 text-pink-300">
+        <div className="min-h-44 rounded-xl bg-[var(--app-panel-soft)] p-4 sm:p-5">
+          <div className="mb-3 flex items-center gap-3 text-neutral-300">
             <TrendingUp size={18} strokeWidth={1.6} />
             <span className="text-sm font-medium">{currentSlide.title}</span>
           </div>
           <div className="font-[var(--font-bebas)] text-4xl font-normal text-white">{currentSlide.metric}</div>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-300">{currentSlide.detail}</p>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-300">{currentSlide.detail}</p>
         </div>
       </div>
 
-      <div className="rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-5">
+      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-5">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-green-300">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
             <ClipboardList size={18} strokeWidth={1.6} />
           </div>
           <div>
             <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Today&apos;s Summary</h2>
-            <p className="text-sm text-gray-400">{formattedDate}</p>
+            <p className="text-sm text-neutral-400">{formattedDate}</p>
           </div>
         </div>
 
-        <div className="space-y-3 text-sm leading-6 text-gray-300">
+        <div className="space-y-3 text-sm leading-6 text-neutral-300">
           <p>
             No journal entry has been written for today yet. Once an entry is saved, this panel can summarize the
             session focus, mood, notes, and follow-up actions.
           </p>
           <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-gray-950/60 p-3">
-                <div className="text-xs uppercase text-gray-500">Entries</div>
+              <div className="rounded-xl bg-[var(--app-panel-soft)] p-3">
+                <div className="text-xs uppercase text-neutral-500">Entries</div>
                 <div className="mt-2 font-[var(--font-bebas)] text-3xl text-white">0</div>
               </div>
-              <div className="rounded-xl bg-gray-950/60 p-3">
-              <div className="text-xs uppercase text-gray-500">Status</div>
+              <div className="rounded-xl bg-[var(--app-panel-soft)] p-3">
+              <div className="text-xs uppercase text-neutral-500">Status</div>
               <div className="mt-2 font-[var(--font-bebas)] text-3xl text-white">Open</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-12">
+      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-800 text-blue-300">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
               <CalendarDays size={18} strokeWidth={1.6} />
             </div>
             <div>
               <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Journal Calendar</h2>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-neutral-400">
                 {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(today)}
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,500px)_1fr]">
-            <div className="grid grid-cols-7 gap-2 text-center text-xs text-gray-500">
+            <div className="grid grid-cols-7 gap-2 text-center text-xs text-neutral-500">
               {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
                 <div key={`${day}-${index}`} className="py-1">
                   {day}
@@ -166,11 +166,11 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
                   <div
                     key={`${day || "empty"}-${index}`}
                     className={`relative flex h-10 items-center justify-center rounded-lg text-sm sm:h-11 ${
-                      day ? "bg-gray-800 text-gray-300" : "bg-transparent"
-                    } ${isToday ? "ring-2 ring-pink-300 text-white" : ""}`}
+                      day ? "bg-[var(--app-control)] text-neutral-300" : "bg-transparent"
+                    } ${isToday ? "ring-2 ring-neutral-300 text-white" : ""}`}
                   >
                     {day}
-                    {hasEntry && <span className="absolute bottom-1 h-1.5 w-1.5 rounded-full bg-blue-300" />}
+                    {hasEntry && <span className="absolute bottom-1 h-1.5 w-1.5 rounded-full bg-neutral-300" />}
                   </div>
                 )
               })}
@@ -178,14 +178,14 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
             <div className="space-y-3">
               {journalEntries.map((entry) => (
-                <div key={entry.day} className="rounded-xl bg-gray-950/60 p-3">
-                  <div className="mb-1 text-xs uppercase text-blue-300">April {entry.day}</div>
+                <div key={entry.day} className="rounded-xl bg-[var(--app-panel-soft)] p-3">
+                  <div className="mb-1 text-xs uppercase text-neutral-400">April {entry.day}</div>
                   <div className="font-medium text-white">{entry.title}</div>
-                  <div className="mt-1 text-sm text-gray-400">{entry.detail}</div>
+                  <div className="mt-1 text-sm text-neutral-400">{entry.detail}</div>
                 </div>
               ))}
-              <div className="rounded-xl border border-dashed border-gray-700 p-3 text-sm text-gray-500">
-                Days with blue dots contain journal entries.
+              <div className="rounded-xl border border-dashed border-[var(--app-border)] p-3 text-sm text-neutral-500">
+                Days with grey dots contain journal entries.
               </div>
             </div>
           </div>

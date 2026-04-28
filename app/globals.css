@@ -17,6 +17,14 @@
 :root {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+  --app-bg: #030303;
+  --app-sidebar: #101010;
+  --app-panel: #151515;
+  --app-panel-soft: rgba(5, 5, 5, 0.62);
+  --app-control: #242424;
+  --app-control-hover: #303030;
+  --app-border: #424242;
+  --app-muted: #a3a3a3;
 }
 
 #particles-js canvas {

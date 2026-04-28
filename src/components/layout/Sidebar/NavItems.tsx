@@ -5,7 +5,7 @@ import { Activity, BookOpen, Scale } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 const navItems = [
-  { icon: Activity, label: "Analysis", href: "/", className: "bg-pink-300 text-gray-900" },
+  { icon: Activity, label: "Analysis", href: "/", className: "bg-neutral-200 text-black" },
   { icon: BookOpen, label: "Journal", href: "/journal" },
   { icon: Scale, label: "Weight Loss", href: "/weight-loss" },
 ]

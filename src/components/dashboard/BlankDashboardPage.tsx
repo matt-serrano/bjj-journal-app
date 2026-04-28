@@ -21,20 +21,20 @@ interface BlankDashboardPageProps {
 function BlankContent({ title }: { title: string }) {
   return (
     <section className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12" aria-label={`${title} blank content`}>
-      <div className="min-h-64 rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-7">
-        <div className="h-full min-h-44 rounded-xl bg-gray-950/60" />
+      <div className="min-h-64 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
+        <div className="h-full min-h-44 rounded-xl bg-[var(--app-panel-soft)]" />
       </div>
-      <div className="min-h-64 rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-5">
-        <div className="h-full min-h-44 rounded-xl bg-gray-950/60" />
+      <div className="min-h-64 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-5">
+        <div className="h-full min-h-44 rounded-xl bg-[var(--app-panel-soft)]" />
       </div>
-      <div className="rounded-2xl bg-gray-900 p-4 sm:p-5 xl:col-span-12">
+      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,500px)_1fr]">
-          <div className="h-80 rounded-xl bg-gray-950/60" />
+          <div className="h-80 rounded-xl bg-[var(--app-panel-soft)]" />
           <div className="space-y-3">
-            <div className="h-20 rounded-xl bg-gray-950/60" />
-            <div className="h-20 rounded-xl bg-gray-950/60" />
-            <div className="h-20 rounded-xl bg-gray-950/60" />
-            <div className="h-16 rounded-xl border border-dashed border-gray-700" />
+            <div className="h-20 rounded-xl bg-[var(--app-panel-soft)]" />
+            <div className="h-20 rounded-xl bg-[var(--app-panel-soft)]" />
+            <div className="h-20 rounded-xl bg-[var(--app-panel-soft)]" />
+            <div className="h-16 rounded-xl border border-dashed border-[var(--app-border)]" />
           </div>
         </div>
       </div>

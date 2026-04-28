@@ -14,7 +14,7 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-20 bg-gray-900 flex flex-col items-center py-8 overflow-y-auto scrollbar-hide">
+    <nav className="fixed left-0 top-0 h-screen w-20 bg-[var(--app-sidebar)] flex flex-col items-center py-8 overflow-y-auto scrollbar-hide">
       <div className="mb-4 h-12 w-12 flex-shrink-0 overflow-hidden">
         <img src="/images/logo.png" alt="BJJ Journal" className="h-full w-full object-contain" />
       </div>
@@ -27,7 +27,7 @@ export function Sidebar() {
               href={href}
               aria-label={label}
               className={`w-12 h-12 flex items-center justify-center rounded-xl transition-colors flex-shrink-0 ${
-                pathname === href ? "bg-pink-300 text-gray-900" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                pathname === href ? "bg-neutral-200 text-black" : "text-neutral-500 hover:text-white hover:bg-[var(--app-control-hover)]"
               }`}
               title={label}
             >
@@ -37,7 +37,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <div className="relative w-9 h-9 rounded-full bg-gray-800 text-gray-400 flex-shrink-0 flex items-center justify-center">
+      <div className="relative w-9 h-9 rounded-full bg-[var(--app-control)] text-neutral-400 flex-shrink-0 flex items-center justify-center">
         <UserRound size={18} strokeWidth={1.6} aria-label="User profile" />
       </div>
     </nav>

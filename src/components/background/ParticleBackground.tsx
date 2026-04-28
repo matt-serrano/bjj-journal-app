@@ -17,7 +17,7 @@ export function ParticleBackground() {
 
   return (
     <>
-      <div id="particles-js" className="pointer-events-none fixed inset-0 z-0 opacity-35" aria-hidden="true" />
+      <div id="particles-js" className="pointer-events-none fixed inset-0 z-0 opacity-20" aria-hidden="true" />
       <Script src="/vendor/particles/particles.min.js" strategy="afterInteractive" onLoad={loadParticles} />
     </>
   )

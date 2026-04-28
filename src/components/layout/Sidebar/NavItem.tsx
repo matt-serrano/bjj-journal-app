@@ -16,13 +16,13 @@ export function NavItem({ icon: Icon, label, href, isActive, isCollapsed, classN
       href={href}
       aria-label={label}
       className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl transition-colors relative group ${
-        isActive ? className || "text-gray-900 bg-pink-300" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+        isActive ? className || "text-black bg-neutral-200" : "text-neutral-500 hover:text-white hover:bg-[var(--app-control-hover)]"
       }`}
       title={isCollapsed ? label : undefined}
     >
       <Icon size={isActive ? 20 : 18} strokeWidth={1.5} />
       {isCollapsed && (
-        <div className="absolute left-14 px-2 py-1 bg-gray-800 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap">
+        <div className="absolute left-14 px-2 py-1 bg-[var(--app-control)] text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap">
           {label}
         </div>
       )}
