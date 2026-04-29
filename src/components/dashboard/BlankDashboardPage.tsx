@@ -18,6 +18,31 @@ interface BlankDashboardPageProps {
   showSidePanels?: boolean
 }
 
+const beltColorClasses = {
+  white: "bg-white",
+  blue: "bg-blue-600",
+  purple: "bg-purple-700",
+  brown: "bg-amber-900",
+  black: "bg-neutral-950",
+}
+
+type BeltColor = keyof typeof beltColorClasses
+
+function BeltIcon({ color }: { color: BeltColor }) {
+  return (
+    <span
+      className="relative inline-flex h-5 w-28 items-center overflow-hidden rounded-sm border border-white/20 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] sm:h-6 sm:w-36"
+      aria-label={`${color} belt`}
+      title={`${color} belt`}
+    >
+      <span className={`h-full flex-[4] rounded-l-sm ${beltColorClasses[color]}`} />
+      {/* TODO: Render up to four stripe markers here from the user's saved stripe count when profile logic is added. */}
+      <span className="h-full flex-[2.4] border-l border-r border-white/20 bg-black" />
+      <span className={`h-full flex-[1] rounded-r-sm ${beltColorClasses[color]}`} />
+    </span>
+  )
+}
+
 function BlankContent({ title }: { title: string }) {
   return (
     <section className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12" aria-label={`${title} blank content`}>
@@ -43,6 +68,10 @@ function BlankContent({ title }: { title: string }) {
 }
 
 export function BlankDashboardPage({ title, children, showSidePanels = true }: BlankDashboardPageProps) {
+  // TODO: Replace this hard-coded value with the authenticated user's saved belt colour.
+  // Keep the value constrained to BeltColor so future profile logic can only pass supported belt states.
+  const userBeltColor: BeltColor = "blue"
+
   return (
     <div className="relative z-10 h-screen bg-transparent text-white flex overflow-hidden">
       <div className="hidden lg:block">
@@ -66,9 +95,10 @@ export function BlankDashboardPage({ title, children, showSidePanels = true }: B
 
             <div className={`${showSidePanels ? "xl:col-span-9" : "xl:col-span-12"} space-y-4 sm:space-y-6 md:space-y-8`}>
               <div className="flex items-center justify-between gap-4 mt-6 xl:mt-0">
-                <h1 className="font-[var(--font-bebas)] text-3xl sm:text-4xl font-normal lg:flex-shrink-0">
-                  {title}
-                </h1>
+                <div className="flex flex-wrap items-center gap-3 lg:flex-shrink-0">
+                  <h1 className="font-[var(--font-bebas)] text-3xl font-normal sm:text-4xl">{title}</h1>
+                  {/* TODO: Re-enable with <BeltIcon color={userBeltColor} /> once belt display is part of the profile UI. */}
+                </div>
               </div>
 
               {children || <BlankContent title={title} />}

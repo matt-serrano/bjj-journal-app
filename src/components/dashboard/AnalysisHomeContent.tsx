@@ -92,7 +92,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
     <div className="space-y-4 sm:space-y-6 md:space-y-8">
       <section
         id="analysis"
-        className="grid min-h-[calc(100vh-8rem)] scroll-mt-6 grid-cols-1 content-start gap-4 sm:gap-5 xl:grid-cols-12"
+        className="grid min-h-[calc(100vh-8rem)] scroll-mt-6 grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12 xl:grid-rows-[auto_1fr]"
         aria-label="Analysis dashboard content"
       >
         <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
@@ -157,7 +157,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
+      <div className="flex min-h-0 flex-col rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
         <div className="mb-4 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
             <Sparkles size={18} strokeWidth={1.6} />
@@ -168,16 +168,16 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
           </div>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-3">
-          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+        <div className="grid flex-1 gap-3 md:grid-cols-3">
+          <div className="flex min-h-36 flex-col justify-center rounded-xl bg-[var(--app-panel-soft)] p-4">
             <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Technique</div>
             <p className="text-sm leading-6 text-neutral-300">Spend the first block on guard retention reactions.</p>
           </div>
-          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+          <div className="flex min-h-36 flex-col justify-center rounded-xl bg-[var(--app-panel-soft)] p-4">
             <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Recovery</div>
             <p className="text-sm leading-6 text-neutral-300">Keep the session moderate and leave room for mobility work.</p>
           </div>
-          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+          <div className="flex min-h-36 flex-col justify-center rounded-xl bg-[var(--app-panel-soft)] p-4">
             <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Journal Prompt</div>
             <p className="text-sm leading-6 text-neutral-300">Note one position that felt sharper and one that needs reps.</p>
           </div>

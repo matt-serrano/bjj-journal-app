@@ -61,12 +61,12 @@ export function Sidebar() {
   }
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-20 bg-[var(--app-sidebar)] flex flex-col items-center py-8 overflow-y-auto scrollbar-hide">
-      <div className="mb-4 h-12 w-12 flex-shrink-0 overflow-hidden">
+    <nav className="fixed left-0 top-0 h-screen w-20 bg-[var(--app-sidebar)] flex flex-col items-center gap-5 pb-8 pt-5 overflow-y-auto scrollbar-hide">
+      <div className="h-9 w-12 flex-shrink-0 overflow-hidden">
         <img src="/images/logo.png" alt="BJJ Journal" className="h-full w-full object-contain" />
       </div>
 
-      <div className="flex flex-col items-center space-y-6 flex-1 min-h-0">
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center space-y-6">
         <div className="flex flex-col items-center space-y-6">
           {navItems.map(({ icon: Icon, label, targetId }) => (
             <button
@@ -75,14 +75,17 @@ export function Sidebar() {
               onClick={() => scrollToSection(targetId)}
               aria-label={label}
               aria-current={activeSection === targetId ? "page" : undefined}
-              className={`w-12 h-12 flex items-center justify-center rounded-xl transition-colors flex-shrink-0 ${
+              className={`relative w-12 h-12 flex items-center justify-center rounded-xl transition-colors flex-shrink-0 ${
                 activeSection === targetId
-                  ? "bg-neutral-200 text-black"
+                  ? "text-white"
                   : "text-neutral-500 hover:text-white hover:bg-[var(--app-control-hover)]"
               }`}
               title={label}
             >
-              <Icon size={20} strokeWidth={1.5} />
+              <Icon size={20} strokeWidth={activeSection === targetId ? 2.6 : 1.5} />
+              {activeSection === targetId && (
+                <span className="absolute bottom-1.5 h-0.5 w-6 rounded-full bg-white" aria-hidden="true" />
+              )}
             </button>
           ))}
         </div>
