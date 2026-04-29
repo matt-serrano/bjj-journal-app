@@ -1,7 +1,18 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Bot, CalendarDays, ChevronLeft, ChevronRight, ClipboardList, TrendingUp } from "lucide-react"
+import {
+  Bot,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardList,
+  MessageSquareText,
+  Scale,
+  Sparkles,
+  Target,
+  TrendingUp,
+} from "lucide-react"
 
 const analysisSlides = [
   {
@@ -27,6 +38,18 @@ const journalEntries = [
   { day: 27, title: "Evening Open Mat", detail: "Light rounds, guard retention notes" },
   { day: 22, title: "No-Gi Class", detail: "Front headlock entries and escapes" },
   { day: 18, title: "Drilling Session", detail: "Passing chains from half guard" },
+]
+
+const weightStats = [
+  { label: "Current Weight", value: "184.6 lb", detail: "Updated from the latest weekly check-in." },
+  { label: "Monthly Change", value: "-3.2 lb", detail: "Steady trend with no sharp fluctuation flagged." },
+  { label: "Goal Pace", value: "On Track", detail: "Projected progress aligns with the current target window." },
+]
+
+const aiAgentCards = [
+  { title: "Ask About Training", detail: "Get quick summaries, follow-up prompts, and journal insights." },
+  { title: "Plan Next Session", detail: "Generate a focused drilling plan from recent notes and trends." },
+  { title: "Spot Patterns", detail: "Surface recurring themes across weight, readiness, and mat time." },
 ]
 
 interface AnalysisHomeContentProps {
@@ -66,8 +89,13 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
   }
 
   return (
-    <section className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12" aria-label="Analysis dashboard content">
-      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
+    <div className="space-y-4 sm:space-y-6 md:space-y-8">
+      <section
+        id="analysis"
+        className="scroll-mt-6 grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12"
+        aria-label="Analysis dashboard content"
+      >
+        <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
@@ -128,8 +156,13 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
           </p>
         </div>
       </div>
+      </section>
 
-      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
+      <section
+        id="journal"
+        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        aria-label="Journal logs"
+      >
         <div className="mb-4 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
             <CalendarDays size={18} strokeWidth={1.6} />
@@ -190,7 +223,78 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+
+      </section>
+
+      <section
+        id="weight-loss"
+        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        aria-label="Weight loss dashboard"
+      >
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+            <Scale size={18} strokeWidth={1.6} />
+          </div>
+          <div>
+            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Weight Loss</h2>
+            <p className="text-sm text-neutral-400">Progress, pace, and next checkpoint</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          {weightStats.map((stat) => (
+            <div key={stat.label} className="min-h-40 rounded-xl bg-[var(--app-panel-soft)] p-4">
+              <div className="mb-3 flex items-center gap-2 text-neutral-400">
+                <Target size={16} strokeWidth={1.6} />
+                <span className="text-xs font-medium uppercase tracking-[0.18em]">{stat.label}</span>
+              </div>
+              <div className="font-[var(--font-bebas)] text-4xl leading-none text-white">{stat.value}</div>
+              <p className="mt-3 text-sm leading-6 text-neutral-400">{stat.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="ai-agent"
+        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        aria-label="AI agent dashboard"
+      >
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+            <Bot size={18} strokeWidth={1.6} />
+          </div>
+          <div>
+            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">AI Agent</h2>
+            <p className="text-sm text-neutral-400">Training assistant and journal companion</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="rounded-2xl border border-white/10 bg-black/35 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+            <div className="mb-3 flex items-center gap-2 text-neutral-300">
+              <MessageSquareText size={18} strokeWidth={1.6} />
+              <span className="text-sm font-medium">Agent Prompt</span>
+            </div>
+            <div className="min-h-36 rounded-xl bg-[var(--app-panel-soft)] p-4 text-sm leading-6 text-neutral-400">
+              Ask the agent to summarize recent journal logs, suggest a drilling focus, or connect training readiness
+              with weight trends.
+            </div>
+          </div>
+
+          <div className="grid gap-3">
+            {aiAgentCards.map((card) => (
+              <div key={card.title} className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+                <div className="mb-2 flex items-center gap-2 text-white">
+                  <Sparkles size={16} strokeWidth={1.6} />
+                  <span className="font-medium">{card.title}</span>
+                </div>
+                <p className="text-sm leading-6 text-neutral-400">{card.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
