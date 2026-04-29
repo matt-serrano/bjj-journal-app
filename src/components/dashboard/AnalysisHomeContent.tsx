@@ -74,7 +74,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               <Bot size={18} strokeWidth={1.6} />
             </div>
             <div>
-              <h2 className="font-[var(--font-bebas)] text-2xl font-normal">AI And Data Analysis</h2>
+              <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Analysis</h2>
               <p className="text-sm text-neutral-400">Slide {activeSlide + 1} of {analysisSlides.length}</p>
             </div>
           </div>
@@ -120,44 +120,39 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
           </div>
         </div>
 
-        <div className="space-y-3 text-sm leading-6 text-neutral-300">
-          <p>
+        <div className="rounded-xl border border-white/10 bg-black/35 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Today&apos;s Entry</div>
+          <p className="text-sm leading-6 text-neutral-300">
             No journal entry has been written for today yet. Once an entry is saved, this panel can summarize the
             session focus, mood, notes, and follow-up actions.
           </p>
-          <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-[var(--app-panel-soft)] p-3">
-                <div className="text-xs uppercase text-neutral-500">Entries</div>
-                <div className="mt-2 font-[var(--font-bebas)] text-3xl text-white">0</div>
-              </div>
-              <div className="rounded-xl bg-[var(--app-panel-soft)] p-3">
-              <div className="text-xs uppercase text-neutral-500">Status</div>
-              <div className="mt-2 font-[var(--font-bebas)] text-3xl text-white">Open</div>
-            </div>
-          </div>
         </div>
       </div>
 
       <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
-              <CalendarDays size={18} strokeWidth={1.6} />
-            </div>
-            <div>
-              <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Journal Calendar</h2>
-              <p className="text-sm text-neutral-400">
-                {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(today)}
-              </p>
-            </div>
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+            <CalendarDays size={18} strokeWidth={1.6} />
           </div>
+          <div>
+            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Journal Logs</h2>
+            <p className="text-sm text-neutral-400">
+              {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(today)}
+            </p>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,500px)_1fr]">
-            <div className="grid grid-cols-7 gap-2 text-center text-xs text-neutral-500">
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,520px)_1fr]">
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_36%,rgba(0,0,0,0.14)_100%)] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-4">
+            <div className="grid grid-cols-7 gap-1.5 text-center text-xs font-medium uppercase tracking-[0.14em] text-neutral-500 sm:gap-2 sm:tracking-[0.18em]">
               {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
                 <div key={`${day}-${index}`} className="py-1">
                   {day}
                 </div>
               ))}
+            </div>
+
+            <div className="mt-2 grid grid-cols-7 gap-1.5 text-center sm:gap-2">
               {monthDays.map((day, index) => {
                 const isToday = day === today.getDate()
                 const hasEntry = day !== null && journalEntryDays.has(day)
@@ -165,30 +160,36 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
                 return (
                   <div
                     key={`${day || "empty"}-${index}`}
-                    className={`relative flex h-10 items-center justify-center rounded-lg text-sm sm:h-11 ${
-                      day ? "bg-[var(--app-control)] text-neutral-300" : "bg-transparent"
-                    } ${isToday ? "ring-2 ring-neutral-300 text-white" : ""}`}
+                    className={`relative flex aspect-square min-h-9 items-center justify-center rounded-lg text-sm transition-colors sm:rounded-xl ${
+                      day
+                        ? "border border-white/5 bg-white/[0.045] text-neutral-300 hover:border-white/15 hover:bg-white/[0.075] hover:text-white"
+                        : "bg-transparent"
+                    } ${
+                      isToday
+                        ? "border-neutral-200/80 bg-white/[0.13] text-white shadow-[0_0_24px_rgba(255,255,255,0.12)] ring-1 ring-white/40"
+                        : ""
+                    }`}
                   >
-                    {day}
-                    {hasEntry && <span className="absolute bottom-1 h-1.5 w-1.5 rounded-full bg-neutral-300" />}
+                    <span className={isToday ? "font-semibold" : ""}>{day}</span>
+                    {hasEntry && (
+                      <span className="absolute bottom-1.5 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.65)]" />
+                    )}
                   </div>
                 )
               })}
             </div>
-
-            <div className="space-y-3">
-              {journalEntries.map((entry) => (
-                <div key={entry.day} className="rounded-xl bg-[var(--app-panel-soft)] p-3">
-                  <div className="mb-1 text-xs uppercase text-neutral-400">April {entry.day}</div>
-                  <div className="font-medium text-white">{entry.title}</div>
-                  <div className="mt-1 text-sm text-neutral-400">{entry.detail}</div>
-                </div>
-              ))}
-              <div className="rounded-xl border border-dashed border-[var(--app-border)] p-3 text-sm text-neutral-500">
-                Days with grey dots contain journal entries.
-              </div>
-            </div>
           </div>
+
+          <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1 xl:grid-rows-3">
+            {journalEntries.map((entry) => (
+              <div key={entry.day} className="flex min-h-28 flex-col justify-center rounded-xl bg-[var(--app-panel-soft)] p-4">
+                <div className="mb-1 text-xs uppercase text-neutral-400">April {entry.day}</div>
+                <div className="font-medium text-white">{entry.title}</div>
+                <div className="mt-1 text-sm text-neutral-400">{entry.detail}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,13 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { Activity, BookOpen, Scale, UserRound } from "lucide-react"
+import { Activity, BookOpen, Bot, Scale, UserRound } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 const navItems = [
   { icon: Activity, label: "Analysis", href: "/" },
   { icon: BookOpen, label: "Journal", href: "/journal" },
   { icon: Scale, label: "Weight Loss", href: "/weight-loss" },
+  { icon: Bot, label: "AI Agent", href: "/ai-agent" },
 ]
 
 export function Sidebar() {

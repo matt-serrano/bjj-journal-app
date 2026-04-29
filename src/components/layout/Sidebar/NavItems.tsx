@@ -1,13 +1,14 @@
 "use client"
 
 import { NavItem } from "./NavItem"
-import { Activity, BookOpen, Scale } from "lucide-react"
+import { Activity, BookOpen, Bot, Scale } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 const navItems = [
   { icon: Activity, label: "Analysis", href: "/", className: "bg-neutral-200 text-black" },
   { icon: BookOpen, label: "Journal", href: "/journal" },
   { icon: Scale, label: "Weight Loss", href: "/weight-loss" },
+  { icon: Bot, label: "AI Agent", href: "/ai-agent" },
 ]
 
 interface NavItemsProps {

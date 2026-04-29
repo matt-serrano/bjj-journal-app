@@ -139,3 +139,39 @@
  GET / 200 in 57ms
  ✓ Compiled in 103ms (354 modules)
  GET / 200 in 15ms
+ ✓ Compiled in 334ms (799 modules)
+ GET / 200 in 44ms
+ GET / 200 in 69ms
+ ✓ Compiled in 138ms (354 modules)
+ GET / 200 in 17ms
+ GET /journal 200 in 19ms
+ GET /weight-loss 200 in 17ms
+ GET /journal 200 in 13ms
+ GET / 200 in 12ms
+ ✓ Compiled in 125ms (354 modules)
+ GET / 200 in 17ms
+ GET /journal 200 in 12ms
+ GET /weight-loss 200 in 13ms
+ GET / 200 in 11ms
+ GET /journal 200 in 14ms
+ GET /weight-loss 200 in 16ms
+ GET / 200 in 13ms
+ ✓ Compiled in 588ms (354 modules)
+ ✓ Compiled in 114ms (354 modules)
+ ✓ Compiled in 450ms (799 modules)
+ ✓ Compiled in 450ms (799 modules)
+ ✓ Compiled in 131ms (354 modules)
+ ✓ Compiled in 289ms (799 modules)
+ ✓ Compiled in 133ms (354 modules)
+ ✓ Compiled in 318ms (799 modules)
+ ✓ Compiled in 178ms (354 modules)
+ ✓ Compiled in 260ms (799 modules)
+ ✓ Compiled in 435ms (799 modules)
+ ✓ Compiled in 195ms (354 modules)
+ ✓ Compiled in 406ms (799 modules)
+ ✓ Compiled in 131ms (354 modules)
+ ✓ Compiled in 332ms (799 modules)
+ ✓ Compiled in 148ms (354 modules)
+ ✓ Compiled in 117ms (354 modules)
+ ✓ Compiled in 424ms (799 modules)
+ ✓ Compiled in 146ms (354 modules)
