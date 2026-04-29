@@ -40,7 +40,22 @@ export function Sidebar() {
   }, [])
 
   const scrollToSection = (targetId: string) => {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    const scrollContainer = document.querySelector<HTMLElement>("[data-dashboard-scroll]")
+    const targetSection = document.getElementById(targetId)
+
+    if (!scrollContainer || !targetSection) {
+      return
+    }
+
+    const containerTop = scrollContainer.getBoundingClientRect().top
+    const targetTop = targetSection.getBoundingClientRect().top
+    const targetScrollTop = scrollContainer.scrollTop + targetTop - containerTop - 24
+
+    scrollContainer.scrollTo({
+      top: Math.max(targetScrollTop, 0),
+      behavior: "smooth",
+    })
+
     window.history.replaceState(null, "", `#${targetId}`)
     setActiveSection(targetId)
   }

@@ -92,7 +92,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
     <div className="space-y-4 sm:space-y-6 md:space-y-8">
       <section
         id="analysis"
-        className="scroll-mt-6 grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12"
+        className="grid min-h-[calc(100vh-8rem)] scroll-mt-6 grid-cols-1 content-start gap-4 sm:gap-5 xl:grid-cols-12"
         aria-label="Analysis dashboard content"
       >
         <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
@@ -156,11 +156,38 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
           </p>
         </div>
       </div>
+
+      <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+            <Sparkles size={18} strokeWidth={1.6} />
+          </div>
+          <div>
+            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Next Focus</h2>
+            <p className="text-sm text-neutral-400">Suggested priority from today&apos;s dashboard signals</p>
+          </div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+            <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Technique</div>
+            <p className="text-sm leading-6 text-neutral-300">Spend the first block on guard retention reactions.</p>
+          </div>
+          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+            <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Recovery</div>
+            <p className="text-sm leading-6 text-neutral-300">Keep the session moderate and leave room for mobility work.</p>
+          </div>
+          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+            <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Journal Prompt</div>
+            <p className="text-sm leading-6 text-neutral-300">Note one position that felt sharper and one that needs reps.</p>
+          </div>
+        </div>
+      </div>
       </section>
 
       <section
         id="journal"
-        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
         aria-label="Journal logs"
       >
         <div className="mb-4 flex items-center gap-3">
@@ -228,7 +255,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <section
         id="weight-loss"
-        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
         aria-label="Weight loss dashboard"
       >
         <div className="mb-4 flex items-center gap-3">
@@ -257,7 +284,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <section
         id="ai-agent"
-        className="scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
         aria-label="AI agent dashboard"
       >
         <div className="mb-4 flex items-center gap-3">
