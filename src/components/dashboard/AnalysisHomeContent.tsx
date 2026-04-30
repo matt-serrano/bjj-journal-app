@@ -591,7 +591,11 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               </div>
             </div>
 
-            <div ref={messagesContainerRef} className="flex-1 space-y-4 overflow-y-auto p-4 scrollbar-hide">
+            <div
+              ref={messagesContainerRef}
+              data-local-scroll
+              className="flex-1 space-y-4 overflow-y-auto p-4 scrollbar-hide"
+            >
               {activeThread.messages.map((message, index) =>
                 message.role === "user" ? (
                   <div key={`${activeThread.id}-${index}`} className="flex justify-end animate-chat-in">
@@ -710,7 +714,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Recent Chats</p>
             </div>
 
-            <div className="grid min-h-0 gap-2 overflow-y-auto p-4 pr-2 scrollbar-thin">
+            <div data-local-scroll className="grid min-h-0 gap-2 overflow-y-auto p-4 pr-2 scrollbar-thin">
               {chatThreads.map((thread) => (
                 <button
                   key={thread.id}

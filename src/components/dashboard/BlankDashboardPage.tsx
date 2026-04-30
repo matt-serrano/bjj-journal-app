@@ -80,7 +80,7 @@ export function BlankDashboardPage({ title, children, showSidePanels = true }: B
 
       <main
         data-dashboard-scroll
-        className="flex-1 h-screen snap-y snap-proximity overflow-y-auto scroll-smooth p-3 sm:p-4 md:p-6 lg:ml-20 lg:p-8 scrollbar-hide"
+        className="flex-1 h-screen snap-y snap-mandatory overflow-y-auto overscroll-contain scroll-smooth p-3 sm:p-4 md:p-6 lg:ml-20 lg:p-8 scrollbar-hide"
       >
         <div className={`${showSidePanels ? "max-w-7xl mx-auto" : "max-w-6xl mx-auto"} space-y-4 sm:space-y-6`}>
           <div className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-8">
