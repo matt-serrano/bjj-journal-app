@@ -1,0 +1,199 @@
+/* Landing page */
+
+position: relative;
+width: 1512px;
+height: 982px;
+
+background: #121212;
+
+
+/* Gemini_Generated_Image_sm1fc1sm1fc1sm1f 1 */
+
+position: absolute;
+width: 1689px;
+height: 980px;
+left: -147px;
+top: 0px;
+
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 52.25%, rgba(102, 102, 102, 0.6) 100%), url(Gemini_Generated_Image_sm1fc1sm1fc1sm1f.png);
+mix-blend-mode: luminosity;
+
+
+/* Rectangle 11 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1551px;
+height: 86px;
+left: -9px;
+top: 0px;
+
+background: rgba(18, 18, 18, 0.37);
+border: 2px solid #1E1E1E;
+
+
+/* Text on path */
+
+position: absolute;
+width: 1197px;
+height: 1197px;
+left: 158px;
+top: 86px;
+
+background: url(laptop-realistic.png);
+
+
+/* Component 2 */
+
+position: absolute;
+width: 69px;
+height: 52px;
+left: 58px;
+top: 17px;
+
+
+
+/* Rectangle 6 */
+
+position: absolute;
+left: 25.42%;
+right: 51.61%;
+top: 0%;
+bottom: 0%;
+
+background: #D9D9D9;
+
+
+/* Rectangle 9 */
+
+position: absolute;
+left: 54.7%;
+right: 22.38%;
+top: 0%;
+bottom: 33.04%;
+
+background: #D9D9D9;
+transform: matrix(0.87, -0.5, 0.5, 0.86, 0, 0);
+
+
+/* Rectangle 10 */
+
+position: absolute;
+left: 0%;
+right: 77.07%;
+top: 0%;
+bottom: 33.04%;
+
+background: #D9D9D9;
+transform: matrix(-0.87, -0.5, 0.5, -0.86, 0, 0);
+
+
+/* Rectangle 8 */
+
+position: absolute;
+left: 51.65%;
+right: 25.38%;
+top: 0%;
+bottom: 0%;
+
+background: #D9D9D9;
+
+
+/* Rectangle 12 */
+
+position: absolute;
+width: 175px;
+height: 42px;
+left: 1284px;
+top: 26px;
+
+background: #B10404;
+border-radius: 14px;
+
+
+/* Log in/SIGN UP */
+
+position: absolute;
+width: 139px;
+height: 36px;
+left: 1302px;
+top: 29px;
+
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 36px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* laptop-realistic 1 */
+
+position: absolute;
+width: 1199px;
+height: 1199px;
+left: 167px;
+top: 74px;
+
+background: url(laptop-realistic.png);
+
+
+/* Train. log. improve. */
+
+position: absolute;
+width: 622px;
+height: 115px;
+left: 455px;
+top: 192px;
+
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 96px;
+line-height: 115px;
+
+color: #FFFFFF;
+
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+/* GrappleLog. */
+
+position: absolute;
+width: 160px;
+height: 48px;
+left: 136px;
+top: 21px;
+
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 48px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Stop forgetting techniques, Start building your system. */
+
+position: absolute;
+width: 808px;
+height: 52px;
+left: 362px;
+top: 307px;
+
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 43px;
+line-height: 52px;
+/* identical to box height */
+
+color: #FFFFFF;
+

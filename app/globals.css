@@ -11,12 +11,20 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .font-title {
+    font-family: var(--font-bebas, var(--font-sans, sans-serif));
+    font-weight: 400;
+  }
+
+  .font-subtitle {
+    font-family: var(--font-bebas, var(--font-sans, sans-serif));
+    font-weight: 400;
+  }
 }
 
 /* Set fonts via CSS variables if available */
 :root {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
   --app-bg: #030303;
   --app-sidebar: #101010;
   --app-panel: #151515;

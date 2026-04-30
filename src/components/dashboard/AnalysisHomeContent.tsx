@@ -102,8 +102,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               <Bot size={18} strokeWidth={1.6} />
             </div>
             <div>
-              <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Analysis</h2>
-              <p className="text-sm text-neutral-400">Slide {activeSlide + 1} of {analysisSlides.length}</p>
+              <h2 className="font-title text-2xl">Analysis</h2>
+              <p className="font-subtitle text-sm text-neutral-400">Slide {activeSlide + 1} of {analysisSlides.length}</p>
             </div>
           </div>
 
@@ -130,9 +130,9 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         <div className="min-h-44 rounded-xl bg-[var(--app-panel-soft)] p-4 sm:p-5">
           <div className="mb-3 flex items-center gap-3 text-neutral-300">
             <TrendingUp size={18} strokeWidth={1.6} />
-            <span className="text-sm font-medium">{currentSlide.title}</span>
+            <span className="font-title text-sm">{currentSlide.title}</span>
           </div>
-          <div className="font-[var(--font-bebas)] text-4xl font-normal text-white">{currentSlide.metric}</div>
+          <div className="font-title text-4xl text-white">{currentSlide.metric}</div>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-300">{currentSlide.detail}</p>
         </div>
       </div>
@@ -143,8 +143,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             <ClipboardList size={18} strokeWidth={1.6} />
           </div>
           <div>
-            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Today&apos;s Summary</h2>
-            <p className="text-sm text-neutral-400">{formattedDate}</p>
+            <h2 className="font-title text-2xl">Today&apos;s Summary</h2>
+            <p className="font-subtitle text-sm text-neutral-400">{formattedDate}</p>
           </div>
         </div>
 
@@ -163,8 +163,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             <Sparkles size={18} strokeWidth={1.6} />
           </div>
           <div>
-            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Next Focus</h2>
-            <p className="text-sm text-neutral-400">Suggested priority from today&apos;s dashboard signals</p>
+            <h2 className="font-title text-2xl">Next Focus</h2>
+            <p className="font-subtitle text-sm text-neutral-400">Suggested priority from today&apos;s dashboard signals</p>
           </div>
         </div>
 
@@ -195,8 +195,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             <CalendarDays size={18} strokeWidth={1.6} />
           </div>
           <div>
-            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Journal Logs</h2>
-            <p className="text-sm text-neutral-400">
+            <h2 className="font-title text-2xl">Journal Logs</h2>
+            <p className="font-subtitle text-sm text-neutral-400">
               {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(today)}
             </p>
           </div>
@@ -244,7 +244,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             {journalEntries.map((entry) => (
               <div key={entry.day} className="flex min-h-28 flex-col justify-center rounded-xl bg-[var(--app-panel-soft)] p-4">
                 <div className="mb-1 text-xs uppercase text-neutral-400">April {entry.day}</div>
-                <div className="font-medium text-white">{entry.title}</div>
+                <div className="font-title text-base text-white">{entry.title}</div>
                 <div className="mt-1 text-sm text-neutral-400">{entry.detail}</div>
               </div>
             ))}
@@ -263,8 +263,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             <Scale size={18} strokeWidth={1.6} />
           </div>
           <div>
-            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">Weight Loss</h2>
-            <p className="text-sm text-neutral-400">Progress, pace, and next checkpoint</p>
+            <h2 className="font-title text-2xl">Weight Loss</h2>
+            <p className="font-subtitle text-sm text-neutral-400">Progress, pace, and next checkpoint</p>
           </div>
         </div>
 
@@ -275,7 +275,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
                 <Target size={16} strokeWidth={1.6} />
                 <span className="text-xs font-medium uppercase tracking-[0.18em]">{stat.label}</span>
               </div>
-              <div className="font-[var(--font-bebas)] text-4xl leading-none text-white">{stat.value}</div>
+              <div className="font-title text-4xl leading-none text-white">{stat.value}</div>
               <p className="mt-3 text-sm leading-6 text-neutral-400">{stat.detail}</p>
             </div>
           ))}
@@ -292,8 +292,8 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             <Bot size={18} strokeWidth={1.6} />
           </div>
           <div>
-            <h2 className="font-[var(--font-bebas)] text-2xl font-normal">AI Agent</h2>
-            <p className="text-sm text-neutral-400">Training assistant and journal companion</p>
+            <h2 className="font-title text-2xl">AI Agent</h2>
+            <p className="font-subtitle text-sm text-neutral-400">Training assistant and journal companion</p>
           </div>
         </div>
 
@@ -314,7 +314,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               <div key={card.title} className="rounded-xl bg-[var(--app-panel-soft)] p-4">
                 <div className="mb-2 flex items-center gap-2 text-white">
                   <Sparkles size={16} strokeWidth={1.6} />
-                  <span className="font-medium">{card.title}</span>
+                  <span className="font-title">{card.title}</span>
                 </div>
                 <p className="text-sm leading-6 text-neutral-400">{card.detail}</p>
               </div>

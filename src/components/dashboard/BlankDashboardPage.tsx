@@ -96,7 +96,7 @@ export function BlankDashboardPage({ title, children, showSidePanels = true }: B
             <div className={`${showSidePanels ? "xl:col-span-9" : "xl:col-span-12"} space-y-4 sm:space-y-6 md:space-y-8`}>
               <div className="flex items-center justify-between gap-4 mt-6 xl:mt-0">
                 <div className="flex flex-wrap items-center gap-3 lg:flex-shrink-0">
-                  <h1 className="font-[var(--font-bebas)] text-3xl font-normal sm:text-4xl">{title}</h1>
+                  <h1 className="font-title text-3xl sm:text-4xl">{title}</h1>
                   {/* TODO: Re-enable with <BeltIcon color={userBeltColor} /> once belt display is part of the profile UI. */}
                 </div>
               </div>
