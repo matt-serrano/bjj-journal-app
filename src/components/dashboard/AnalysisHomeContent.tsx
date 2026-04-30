@@ -8,6 +8,7 @@ import {
   ChevronRight,
   ClipboardList,
   MessageSquareText,
+  PenLine,
   Scale,
   Sparkles,
   Target,
@@ -91,6 +92,30 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
     setActiveSlide((current) => (current === analysisSlides.length - 1 ? 0 : current + 1))
   }
 
+  const goToJournalSection = () => {
+    const scrollContainer = document.querySelector<HTMLElement>("[data-dashboard-scroll]")
+    const journalSection = document.getElementById("journal")
+
+    if (!scrollContainer || !journalSection) {
+      return
+    }
+
+    const containerRect = scrollContainer.getBoundingClientRect()
+    const journalRect = journalSection.getBoundingClientRect()
+    const targetScrollTop =
+      scrollContainer.scrollTop +
+      journalRect.top -
+      containerRect.top -
+      (scrollContainer.clientHeight - journalSection.offsetHeight) / 2
+
+    scrollContainer.scrollTo({
+      top: Math.max(targetScrollTop, 0),
+      behavior: "smooth",
+    })
+
+    window.history.replaceState(null, "", "#journal")
+  }
+
   return (
     <div className="space-y-4 sm:space-y-6 md:space-y-8">
       <section
@@ -101,7 +126,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
               <Bot size={18} strokeWidth={1.6} />
             </div>
             <div>
@@ -115,7 +140,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               type="button"
               onClick={goToPreviousSlide}
               aria-label="Previous analysis slide"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
             >
               <ChevronLeft size={18} />
             </button>
@@ -123,7 +148,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               type="button"
               onClick={goToNextSlide}
               aria-label="Next analysis slide"
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-300 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
             >
               <ChevronRight size={18} />
             </button>
@@ -133,7 +158,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         <div className="min-h-44 rounded-xl bg-[var(--app-panel-soft)] p-4 sm:p-5">
           <div className="mb-3 flex items-center gap-3 text-neutral-300">
             <TrendingUp size={18} strokeWidth={1.6} />
-            <span className="font-title text-sm">{currentSlide.title}</span>
+            <span className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">{currentSlide.title}</span>
           </div>
           <div className="font-title text-4xl text-white">{currentSlide.metric}</div>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-300">{currentSlide.detail}</p>
@@ -142,7 +167,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-5">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
             <ClipboardList size={18} strokeWidth={1.6} />
           </div>
           <div>
@@ -157,12 +182,20 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             No journal entry has been written for today yet. Once an entry is saved, this panel can summarize the
             session focus, mood, notes, and follow-up actions.
           </p>
+          <button
+            type="button"
+            onClick={goToJournalSection}
+            className="mt-4 inline-flex h-9 items-center gap-2 rounded-xl bg-[var(--app-control)] px-3 text-sm font-medium text-neutral-200 transition-colors hover:bg-[var(--app-control-hover)] hover:text-white"
+          >
+            <PenLine size={16} strokeWidth={1.7} />
+            <span>Write Journal</span>
+          </button>
         </div>
       </div>
 
       <div className="flex min-h-0 flex-col rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-12">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
             <Sparkles size={18} strokeWidth={1.6} />
           </div>
           <div>
@@ -194,7 +227,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         aria-label="Journal logs"
       >
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
             <CalendarDays size={18} strokeWidth={1.6} />
           </div>
           <div>
@@ -262,7 +295,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         aria-label="Weight loss dashboard"
       >
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
             <Scale size={18} strokeWidth={1.6} />
           </div>
           <div>
@@ -291,7 +324,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         aria-label="AI agent dashboard"
       >
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--app-control)] text-neutral-200">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
             <Bot size={18} strokeWidth={1.6} />
           </div>
           <div>
