@@ -44,7 +44,7 @@ export function Sidebar() {
     const targetSection = document.getElementById(targetId)
 
     if (!scrollContainer || !targetSection) {
-      return
+      return false
     }
 
     const containerRect = scrollContainer.getBoundingClientRect()
@@ -62,10 +62,11 @@ export function Sidebar() {
 
     window.history.replaceState(null, "", `#${targetId}`)
     setActiveSection(targetId)
+    return true
   }
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-20 bg-[var(--app-sidebar)] flex flex-col items-center gap-5 pb-8 pt-5 overflow-y-auto scrollbar-hide">
+    <nav className="fixed left-0 top-0 z-50 h-screen w-20 bg-[var(--app-sidebar)] flex flex-col items-center gap-5 pb-8 pt-5 overflow-y-auto scrollbar-hide">
       <div className="h-9 w-12 flex-shrink-0 overflow-hidden">
         <img src="/images/logo.png" alt="BJJ Journal" className="h-full w-full object-contain" />
       </div>
@@ -73,10 +74,14 @@ export function Sidebar() {
       <div className="flex min-h-0 flex-1 flex-col items-center justify-center space-y-6">
         <div className="flex flex-col items-center space-y-6">
           {navItems.map(({ icon: Icon, label, targetId }) => (
-            <button
+            <a
               key={label}
-              type="button"
-              onClick={() => scrollToSection(targetId)}
+              href={`#${targetId}`}
+              onClick={(event) => {
+                if (scrollToSection(targetId)) {
+                  event.preventDefault()
+                }
+              }}
               aria-label={label}
               aria-current={activeSection === targetId ? "page" : undefined}
               className={`relative w-12 h-12 flex items-center justify-center rounded-xl transition-colors flex-shrink-0 ${
@@ -90,7 +95,7 @@ export function Sidebar() {
               {activeSection === targetId && (
                 <span className="absolute bottom-1.5 h-0.5 w-6 rounded-full bg-white" aria-hidden="true" />
               )}
-            </button>
+            </a>
           ))}
         </div>
       </div>
