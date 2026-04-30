@@ -44,11 +44,99 @@ const journalEntries = [
   { day: 18, title: "Drilling Session", detail: "Passing chains from half guard" },
 ]
 
-const weightStats = [
-  { label: "Current Weight", value: "184.6 lb", detail: "Updated from the latest weekly check-in." },
-  { label: "Monthly Change", value: "-3.2 lb", detail: "Steady trend with no sharp fluctuation flagged." },
-  { label: "Goal Pace", value: "On Track", detail: "Projected progress aligns with the current target window." },
+type WeightMode = "cutting" | "maintaining" | "bulking"
+type WeightRange = "1W" | "1M" | "3M" | "ALL"
+
+const weightModes: Array<{ label: string; value: WeightMode }> = [
+  { label: "Cutting", value: "cutting" },
+  { label: "Maintaining", value: "maintaining" },
+  { label: "Bulking", value: "bulking" },
 ]
+
+const weightRangeOptions: WeightRange[] = ["1W", "1M", "3M", "ALL"]
+
+const weightHistory: Record<WeightMode, number[]> = {
+  cutting: [189.4, 188.9, 188.1, 187.5, 187.0, 186.2, 185.9, 185.3, 185.0, 184.8, 184.7, 184.6],
+  maintaining: [184.2, 184.7, 184.4, 184.8, 184.5, 184.1, 184.6, 184.9, 184.3, 184.5, 184.8, 184.6],
+  bulking: [181.8, 182.1, 182.5, 182.9, 183.2, 183.6, 184.0, 184.3, 184.8, 185.2, 185.7, 186.1],
+}
+
+const weightModeConfig = {
+  cutting: {
+    currentWeight: "184.6 lb",
+    weightClass: "181.5 lb class",
+    trendValue: "-3.2 lb",
+    trendDetail: "On pace for a controlled cut.",
+    statusValue: "On Track",
+    statusDetail: "Competition weight is reachable without forcing a crash cut.",
+    targetLabel: "Competition Target",
+    targetWeight: "181.5 lb",
+    targetLine: 181.5,
+    targetRange: null,
+    remaining: "3.1 lb to make 181.5 lb class",
+    estimate: "Estimated: 3-4 weeks at current pace",
+    consistency: "5 logs this week",
+    frequency: "Avg 5.8 check-ins / week",
+    streak: "5 day streak",
+    insight: "Cut is moving well. Keep rounds sharp and avoid chasing extra sweat unless weigh-ins are close.",
+  },
+  maintaining: {
+    currentWeight: "184.6 lb",
+    weightClass: "183-185 lb range",
+    trendValue: "Stable",
+    trendDetail: "Holding inside a +/-0.5 lb band.",
+    statusValue: "Stable",
+    statusDetail: "Maintenance range is steady for regular training weeks.",
+    targetLabel: "Target Range",
+    targetWeight: "183-185 lb",
+    targetLine: null,
+    targetRange: [183, 185] as [number, number],
+    remaining: "Inside ideal training range",
+    estimate: "No adjustment needed this week",
+    consistency: "4 logs this week",
+    frequency: "Avg 4.6 check-ins / week",
+    streak: "3 day streak",
+    insight: "You are maintaining within your ideal training range. Keep check-ins consistent after hard sessions.",
+  },
+  bulking: {
+    currentWeight: "186.1 lb",
+    weightClass: "Off-season build",
+    trendValue: "+2.1 lb",
+    trendDetail: "Slightly above target gain rate.",
+    statusValue: "Watch Pace",
+    statusDetail: "Bulk is productive, but gain rate is close to drifting past clean mass.",
+    targetLabel: "Build Target",
+    targetWeight: "190 lb",
+    targetLine: 190,
+    targetRange: null,
+    remaining: "3.9 lb to strength block target",
+    estimate: "Estimated: 5-6 weeks at current pace",
+    consistency: "4 logs this week",
+    frequency: "Avg 4.2 check-ins / week",
+    streak: "4 day streak",
+    insight: "Bulk rate is a touch high. Keep protein high and add calories only if mat pace still feels strong.",
+  },
+} satisfies Record<
+  WeightMode,
+  {
+    currentWeight: string
+    weightClass: string
+    trendValue: string
+    trendDetail: string
+    statusValue: string
+    statusDetail: string
+    targetLabel: string
+    targetWeight: string
+    targetLine: number | null
+    targetRange: [number, number] | null
+    remaining: string
+    estimate: string
+    consistency: string
+    frequency: string
+    streak: string
+    insight: string
+  }
+>
 
 const aiAgentCards = [
   "Summarize recent journal patterns",
@@ -136,8 +224,99 @@ function getMonthDays(date: Date) {
   })
 }
 
+function getWeightSeries(mode: WeightMode, range: WeightRange) {
+  const history = weightHistory[mode]
+  const visibleCount = range === "1W" ? 4 : range === "1M" ? 8 : range === "3M" ? 12 : history.length
+
+  return history.slice(-visibleCount).map((weight, index, series) => ({
+    label: index === series.length - 1 ? "Today" : `${series.length - index - 1} ago`,
+    weight,
+  }))
+}
+
+function getMovingAverage(series: Array<{ label: string; weight: number }>) {
+  return series.map((point, index) => {
+    const slice = series.slice(Math.max(index - 2, 0), index + 1)
+    const total = slice.reduce((sum, currentPoint) => sum + currentPoint.weight, 0)
+
+    return {
+      ...point,
+      weight: total / slice.length,
+    }
+  })
+}
+
+function getSmoothPath(points: Array<{ x: number; y: number }>) {
+  if (!points.length) {
+    return ""
+  }
+
+  if (points.length === 1) {
+    return `M ${points[0].x} ${points[0].y}`
+  }
+
+  if (points.length === 2) {
+    return `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y}`
+  }
+
+  const lastPoint = points[points.length - 1]
+  const secondLastPoint = points[points.length - 2]
+  const path = points.slice(1, -1).reduce((currentPath, point, index) => {
+    const nextPoint = points[index + 2]
+    const midX = (point.x + nextPoint.x) / 2
+    const midY = (point.y + nextPoint.y) / 2
+
+    return `${currentPath} Q ${point.x} ${point.y} ${midX} ${midY}`
+  }, `M ${points[0].x} ${points[0].y}`)
+
+  return `${path} Q ${secondLastPoint.x} ${secondLastPoint.y} ${lastPoint.x} ${lastPoint.y}`
+}
+
+function getWeightGraph(
+  series: Array<{ label: string; weight: number }>,
+  config: (typeof weightModeConfig)[WeightMode],
+) {
+  const width = 640
+  const height = 180
+  const paddingX = 26
+  const paddingY = 18
+  const values = [
+    ...series.map((point) => point.weight),
+    ...(config.targetLine ? [config.targetLine] : []),
+    ...(config.targetRange ? config.targetRange : []),
+  ]
+  const minValue = Math.min(...values) - 0.8
+  const maxValue = Math.max(...values) + 0.8
+  const range = maxValue - minValue || 1
+  const getX = (index: number) =>
+    paddingX + (index / Math.max(series.length - 1, 1)) * (width - paddingX * 2)
+  const getY = (weight: number) => height - paddingY - ((weight - minValue) / range) * (height - paddingY * 2)
+  const points = getMovingAverage(series).map((point, index) => ({
+    x: getX(index),
+    y: getY(point.weight),
+  }))
+
+  return {
+    width,
+    height,
+    path: getSmoothPath(points),
+    points,
+    minLabel: `${minValue.toFixed(0)} lb`,
+    maxLabel: `${maxValue.toFixed(0)} lb`,
+    targetLineY: config.targetLine ? getY(config.targetLine) : null,
+    rangeBand: config.targetRange
+      ? {
+          yTop: getY(config.targetRange[1]),
+          yBottom: getY(config.targetRange[0]),
+        }
+      : null,
+  }
+}
+
 export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [selectedWeightMode, setSelectedWeightMode] = useState<WeightMode>("cutting")
+  const [activeWeightRange, setActiveWeightRange] = useState<WeightRange>("1M")
   const [chatThreads, setChatThreads] = useState(initialChatThreads)
   const [activeThreadId, setActiveThreadId] = useState(initialChatThreads[0].id)
   const [chatInput, setChatInput] = useState("")
@@ -152,6 +331,32 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
   const today = useMemo(() => new Date(todayIso), [todayIso])
   const monthDays = useMemo(() => getMonthDays(today), [today])
   const currentSlide = analysisSlides[activeSlide]
+  const selectedWeightConfig = weightModeConfig[selectedWeightMode]
+  const selectedWeightSeries = useMemo(
+    () => getWeightSeries(selectedWeightMode, activeWeightRange),
+    [selectedWeightMode, activeWeightRange],
+  )
+  const weightGraph = useMemo(
+    () => getWeightGraph(selectedWeightSeries, selectedWeightConfig),
+    [selectedWeightConfig, selectedWeightSeries],
+  )
+  const weightSummaryCards = [
+    {
+      label: "Current Weight",
+      value: selectedWeightConfig.currentWeight,
+      detail: selectedWeightConfig.weightClass,
+    },
+    {
+      label: "Weight Trend",
+      value: selectedWeightConfig.trendValue,
+      detail: selectedWeightConfig.trendDetail,
+    },
+    {
+      label: "Weight Status",
+      value: selectedWeightConfig.statusValue,
+      detail: selectedWeightConfig.statusDetail,
+    },
+  ]
   const activeThread = chatThreads.find((thread) => thread.id === activeThreadId) || chatThreads[0]
   const isActiveThreadTyping = typingThreadIds.includes(activeThread.id)
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -534,18 +739,37 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
         className={`${sectionViewportClass} rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5`}
         aria-label="Weight loss dashboard"
       >
-        <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
-            <Scale size={18} strokeWidth={1.6} />
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--app-control)] text-neutral-200">
+              <Scale size={18} strokeWidth={1.6} />
+            </div>
+            <div>
+              <h2 className="font-title text-2xl">Weight Tracking</h2>
+              <p className="font-subtitle text-sm text-neutral-400">BJJ competition weight, maintenance, and build pace</p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-title text-2xl">Weight Loss</h2>
-            <p className="font-subtitle text-sm text-neutral-400">Progress, pace, and next checkpoint</p>
+
+          <div className="flex rounded-xl bg-[var(--app-panel-soft)] p-1">
+            {weightModes.map((mode) => (
+              <button
+                key={mode.value}
+                type="button"
+                onClick={() => setSelectedWeightMode(mode.value)}
+                className={`h-8 rounded-lg px-3 text-xs font-medium transition-colors ${
+                  selectedWeightMode === mode.value
+                    ? "bg-neutral-200 text-neutral-950"
+                    : "text-neutral-500 hover:text-white"
+                }`}
+              >
+                {mode.label}
+              </button>
+            ))}
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          {weightStats.map((stat) => (
+          {weightSummaryCards.map((stat) => (
             <div key={stat.label} className="min-h-40 rounded-xl bg-[var(--app-panel-soft)] p-4">
               <div className="mb-3 flex items-center gap-2 text-neutral-400">
                 <Target size={16} strokeWidth={1.6} />
@@ -555,6 +779,94 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
               <p className="mt-3 text-sm leading-6 text-neutral-400">{stat.detail}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-4 rounded-xl bg-[var(--app-panel-soft)] p-4">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Weight Trend</div>
+              <p className="mt-1 text-sm text-neutral-400">Moving average, target markers, and check-in signal.</p>
+            </div>
+            <div className="flex rounded-xl bg-black/35 p-1">
+              {weightRangeOptions.map((range) => (
+                <button
+                  key={range}
+                  type="button"
+                  onClick={() => setActiveWeightRange(range)}
+                  className={`h-8 rounded-lg px-3 text-xs font-medium transition-colors ${
+                    activeWeightRange === range ? "bg-neutral-200 text-neutral-950" : "text-neutral-500 hover:text-white"
+                  }`}
+                >
+                  {range}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative h-56 overflow-hidden rounded-xl bg-black/30 p-3">
+            <svg
+              viewBox={`0 0 ${weightGraph.width} ${weightGraph.height}`}
+              className="h-full w-full"
+              role="img"
+              aria-label={`${selectedWeightMode} weight trend graph`}
+            >
+              <line x1="26" y1="18" x2="26" y2="162" stroke="rgba(255,255,255,0.08)" />
+              <line x1="26" y1="162" x2="614" y2="162" stroke="rgba(255,255,255,0.08)" />
+              {weightGraph.rangeBand && (
+                <rect
+                  x="26"
+                  y={weightGraph.rangeBand.yTop}
+                  width="588"
+                  height={Math.max(weightGraph.rangeBand.yBottom - weightGraph.rangeBand.yTop, 2)}
+                  fill="rgba(255,255,255,0.08)"
+                />
+              )}
+              {weightGraph.targetLineY && (
+                <line
+                  x1="26"
+                  y1={weightGraph.targetLineY}
+                  x2="614"
+                  y2={weightGraph.targetLineY}
+                  stroke="rgba(255,255,255,0.42)"
+                  strokeDasharray="6 6"
+                />
+              )}
+              <path d={weightGraph.path} fill="none" stroke="rgba(255,255,255,0.9)" strokeLinecap="round" strokeWidth="3" />
+              {weightGraph.points.map((point, index) => (
+                <circle
+                  key={`${point.x}-${index}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r={index === weightGraph.points.length - 1 ? 4 : 2.5}
+                  fill="white"
+                  opacity={index === weightGraph.points.length - 1 ? 1 : 0.55}
+                />
+              ))}
+            </svg>
+            <div className="pointer-events-none absolute left-3 top-3 text-[11px] text-neutral-500">{weightGraph.maxLabel}</div>
+            <div className="pointer-events-none absolute bottom-3 left-3 text-[11px] text-neutral-500">{weightGraph.minLabel}</div>
+            <div className="pointer-events-none absolute bottom-3 right-4 text-[11px] text-neutral-500">Today</div>
+          </div>
+
+          <p className="mt-3 text-sm leading-6 text-neutral-300">{selectedWeightConfig.insight}</p>
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-2">
+          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+            <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">
+              Weight Goal / Competition Target
+            </div>
+            <div className="font-title text-3xl leading-none text-white">{selectedWeightConfig.targetWeight}</div>
+            <p className="mt-3 text-sm leading-6 text-neutral-300">{selectedWeightConfig.remaining}</p>
+            <p className="mt-1 text-sm leading-6 text-neutral-500">{selectedWeightConfig.estimate}</p>
+          </div>
+
+          <div className="rounded-xl bg-[var(--app-panel-soft)] p-4">
+            <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Check-in Consistency</div>
+            <div className="font-title text-3xl leading-none text-white">{selectedWeightConfig.consistency}</div>
+            <p className="mt-3 text-sm leading-6 text-neutral-300">{selectedWeightConfig.frequency}</p>
+            <p className="mt-1 text-sm leading-6 text-neutral-500">{selectedWeightConfig.streak}</p>
+          </div>
         </div>
       </section>
 
@@ -709,7 +1021,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
             </div>
           </div>
 
-          <aside className="flex min-h-0 flex-col overflow-hidden rounded-2xl bg-[var(--app-panel-soft)]">
+          <aside className="flex min-h-0 flex-col overflow-hidden rounded-2xl bg-black/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
             <div className="border-b border-white/10 px-4 py-3">
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-500">Recent Chats</p>
             </div>
