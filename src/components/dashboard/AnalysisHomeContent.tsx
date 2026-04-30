@@ -52,6 +52,9 @@ const aiAgentCards = [
   { title: "Spot Patterns", detail: "Surface recurring themes across weight, readiness, and mat time." },
 ]
 
+const sectionViewportClass =
+  "h-[calc(100svh-1.5rem)] snap-center scroll-mt-0 overflow-y-auto scrollbar-hide sm:h-[calc(100svh-2rem)] md:h-[calc(100svh-3rem)] lg:h-[calc(100svh-4rem)]"
+
 interface AnalysisHomeContentProps {
   todayIso: string
 }
@@ -92,7 +95,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
     <div className="space-y-4 sm:space-y-6 md:space-y-8">
       <section
         id="analysis"
-        className="grid min-h-[calc(100vh-8rem)] scroll-mt-6 grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12 xl:grid-rows-[auto_1fr]"
+        className={`${sectionViewportClass} grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-12 xl:grid-rows-[auto_1fr]`}
         aria-label="Analysis dashboard content"
       >
         <div className="rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5 xl:col-span-7">
@@ -187,7 +190,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <section
         id="journal"
-        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className={`${sectionViewportClass} rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5`}
         aria-label="Journal logs"
       >
         <div className="mb-4 flex items-center gap-3">
@@ -255,7 +258,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <section
         id="weight-loss"
-        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className={`${sectionViewportClass} rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5`}
         aria-label="Weight loss dashboard"
       >
         <div className="mb-4 flex items-center gap-3">
@@ -284,7 +287,7 @@ export function AnalysisHomeContent({ todayIso }: AnalysisHomeContentProps) {
 
       <section
         id="ai-agent"
-        className="min-h-[calc(100vh-8rem)] scroll-mt-6 rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5"
+        className={`${sectionViewportClass} rounded-2xl bg-[var(--app-panel)] p-4 sm:p-5`}
         aria-label="AI agent dashboard"
       >
         <div className="mb-4 flex items-center gap-3">

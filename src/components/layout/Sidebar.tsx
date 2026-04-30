@@ -47,9 +47,13 @@ export function Sidebar() {
       return
     }
 
-    const containerTop = scrollContainer.getBoundingClientRect().top
-    const targetTop = targetSection.getBoundingClientRect().top
-    const targetScrollTop = scrollContainer.scrollTop + targetTop - containerTop - 24
+    const containerRect = scrollContainer.getBoundingClientRect()
+    const targetRect = targetSection.getBoundingClientRect()
+    const targetScrollTop =
+      scrollContainer.scrollTop +
+      targetRect.top -
+      containerRect.top -
+      (scrollContainer.clientHeight - targetSection.offsetHeight) / 2
 
     scrollContainer.scrollTo({
       top: Math.max(targetScrollTop, 0),
