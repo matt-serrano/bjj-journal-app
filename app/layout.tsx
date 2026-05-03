@@ -21,9 +21,8 @@ const bebasNeue = Bebas_Neue({
 })
 
 export const metadata: Metadata = {
-  title: "Smart Home Dashboard",
-  description: "Modern smart home control dashboard",
-  generator: "v0.app",
+  title: "BJJ Journal",
+  description: "Track your rolls, monitor your progress, and elevate your game",
 }
 
 export default function RootLayout({
