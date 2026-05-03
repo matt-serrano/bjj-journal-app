@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export default function LandingPage() {
   return (
-    <div className="relative z-10 min-h-screen overflow-hidden bg-[#121212]">
+    <div className="relative z-10 flex h-screen flex-col overflow-hidden bg-[#121212]">
       {/* Background mat texture */}
       <div className="absolute inset-0 mix-blend-luminosity">
         <Image
@@ -40,25 +40,23 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero content */}
-      <main className="relative z-10 flex flex-col items-center px-4 pt-16 text-center sm:pt-24">
+      <main className="relative z-10 flex flex-col items-center px-4 pt-2 text-center sm:pt-4">
         <h1 className="font-title text-5xl tracking-wide text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] sm:text-7xl md:text-8xl lg:text-[96px]">
           Train. Log. Improve.
         </h1>
-        <p className="mt-4 font-title text-xl tracking-wide text-white sm:text-3xl md:text-4xl">
+        <p className="mt-1 font-title text-xl tracking-wide text-white sm:text-3xl md:text-4xl">
           Stop forgetting techniques, Start building your system.
         </p>
 
-        {/* Laptop mockup */}
-        <div className="relative mt-8 w-full max-w-4xl sm:mt-12">
-          <Image
-            src="/images/laptop-mockup.png"
-            alt="GrappleLog dashboard preview"
-            width={1199}
-            height={1199}
-            className="h-auto w-full"
-            priority
-          />
-        </div>
+        {/* Laptop mockup — tight below subtitle, clipped at viewport bottom */}
+        <Image
+          src="/images/laptop-mockup.png"
+          alt="GrappleLog dashboard preview"
+          width={1199}
+          height={1199}
+          className="-mt-52 h-auto w-full max-w-6xl sm:-mt-72"
+          priority
+        />
       </main>
     </div>
   )
